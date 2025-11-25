@@ -1,0 +1,635 @@
+\documentclass{beamer}
+\usepackage{amsmath,amssymb}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{calc}
+\usepackage{tcolorbox}
+\usetheme{Madrid}
+
+% Title Information
+\title{Complex Analysis}
+\subtitle{ Theory and Math}
+\author{Md. Abde Mannaf}
+\institute{Senior Lecturer, NUB}
+\date{\today}
+
+\begin{document}
+
+%---------------------------------------------
+% Title Slide
+\frame{\titlepage}
+
+% Outline Slide
+\begin{frame}
+\frametitle{Presentation Outline}
+\tableofcontents
+\end{frame}
+
+%---------------------------------------------
+\section{Introduction}
+\begin{frame}{Introduction}
+    \begin{block}{Overview}
+        This lecture discusses two important types of first-order differential equations:
+        \begin{itemize}
+            \item Linear Differential Equations
+            \item Exact Differential Equations
+        \end{itemize}
+        These equations have specific solution techniques based on their structure.
+    \end{block}
+\end{frame}
+
+%---------------------------------------------
+\section{Definitions}
+
+\begin{frame}{Definitions}
+    \begin{block}{Complex number}
+    Any number of the form $x+iy$ is called a complex number where $x,y \in R$. A complex number defined by $z=x+iy$
+    \end{block}\pause
+        
+    \begin{block}{Complex variable} 
+    A variable which can take any complex number number is called complex variable. The complex variable of a complex number represented by $ z =x+iy$.
+    \end{block}\pause
+    \begin{block}{Conjugate complex number} 
+    Any number of the form $x-iy$ is called a complex number where $x,y \in R$. A complex number defined by $\bar{z} = x-iy$.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Definitions}
+    \begin{block}{Analytic Function}
+        A complex function $f(z)$ is said to be analytic at a point $z_0$ if its derivative exists not only at $z_0$ but also at each point $z$ in some neighborhood of $z_0$.
+\end{block}\pause
+    
+\begin{block}{Cauchy's Integral Formula} 
+If $f$ is analytic on a simply connected domain $D$ and $\gamma$ is a positively oriented, simple closed contour lying in $D$, then for any point $z$ inside $\gamma$,
+\[
+f(z) = \frac{1}{2\pi i} \int_{\gamma} \frac{f(\zeta)}{\zeta - z}\, d\zeta.
+\]
+
+    \end{block}
+\end{frame}
+
+
+
+% \begin{frame}{Definitions}
+%     \begin{block}{Analytic Function}
+%        \textbf{Definition (Analytic Function).}
+% A function $f$ is said to be \emph{analytic} at a point $z_0$ if it can be represented by a convergent power series in some neighborhood of $z_0$; that is, if there exists $r > 0$ such that
+% \[
+% f(z) = \sum_{n=0}^{\infty} a_n (z - z_0)^n \quad \text{for all } |z - z_0| < r.
+% \]
+% A function is called \emph{analytic on a set} $D$ if it is analytic at every point of $D$.
+% \end{block}\pause
+    
+% \begin{block}{Cauchy's Integral Formula} 
+%  \textbf{Cauchy's Integral Formula.}
+% If $f$ is analytic on a simply connected domain $D$ and $\gamma$ is a positively oriented, simple closed contour lying in $D$, then for any point $z$ inside $\gamma$,
+% \[
+% f(z) = \frac{1}{2\pi i} \int_{\gamma} \frac{f(\zeta)}{\zeta - z}\, d\zeta.
+% \]
+
+%     \end{block}
+% \end{frame}
+
+
+
+
+
+
+
+
+
+ 
+
+\begin{frame}{Theorem}
+\begin{block}
+If $f(z) = u(x,y) + iv(x,y)$ is analytic in a region $R$, and if $u$ and $v$
+have continuous second-order partial derivatives in $R$, then both $u$ and $v$ 
+are harmonic in $R$.
+\end{block}
+\textbf{Proof.}
+Since $f$ is analytic in $R$, the real and imaginary parts $u$ and $v$ satisfy
+the Cauchy--Riemann equations:
+\[
+u_x = v_y, \qquad u_y = -v_x.
+\]
+Because $u$ and $v$ have continuous second-order partial derivatives, we may
+differentiate the Cauchy--Riemann equations again.
+
+Differentiate $u_x = v_y$ with respect to $x$:
+\[
+u_{xx} = v_{yx}.
+\]
+Differentiate $u_y = -v_x$ with respect to $y$:
+\[
+u_{yy} = -v_{xy}.
+\]
+
+\end{frame}
+\begin{frame}{continued}
+    Since mixed partial derivatives are equal ($v_{xy} = v_{yx}$), we obtain
+\[
+u_{xx} + u_{yy}
+= v_{yx} - v_{xy}
+= 0.
+\]
+Thus,
+\[
+\Delta u = u_{xx} + u_{yy} = 0,
+\]
+which shows that $u$ is harmonic in $R$.
+
+Similarly, differentiate $u_x = v_y$ with respect to $y$:
+\[
+u_{xy} = v_{yy}.
+\]
+Differentiate $u_y = -v_x$ with respect to $x$:
+\[
+u_{yx} = -v_{xx}.
+\]
+Again using $u_{xy} = u_{yx}$, we get
+\[
+v_{yy} = -v_{xx},
+\]
+or equivalently,
+\[
+v_{xx} + v_{yy} = 0.
+\]
+\end{frame}
+
+\begin{frame}{Continued}
+    Thus,
+\[
+\Delta v = v_{xx} + v_{yy} = 0,
+\]
+so $v$ is harmonic in $R$.
+
+Hence, both $u$ and $v$ are harmonic functions in the region $R$.
+% \quad \blacksquare
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}{Show that the function $u = 2x - x^{3} + 3xy^{2}$ is harmonic and also find the harmonic
+conjugate if $\; f(z)=u+iv$ is analytic.}
+  
+
+\textbf{Solution:}
+
+Given that, $u = 2x - x^{3} + 3xy^{2}$
+
+\[
+\therefore \frac{\partial u}{\partial x} = 2 - 3x^{2} + 3y^{2} = \Phi_{1}(x,y) \qquad \text{........(1)}
+\]
+
+\[
+\frac{\partial u}{\partial y} = 6xy = \Phi_{2}(x,y) \qquad \text{........(2)}
+\]
+
+\[
+\frac{\partial^{2} u}{\partial x^{2}} = -6x \qquad \text{........(3)}
+\]
+
+\[
+\frac{\partial^{2} u}{\partial y^{2}} = 6x \qquad \text{........(4)}
+\]
+
+Adding equation (3) \& (4) we get,
+
+\[
+\frac{\partial^{2} u}{\partial x^{2}} + \frac{\partial^{2} u}{\partial y^{2}}
+= -6x + 6x = 0
+\]
+
+This shows that $u$ satisfy Laplace equation and hence $u$ is harmonic.
+
+\textit{To find the harmonic conjugate $v$, we have by putting $x = z$ and $y = 0$ in (1) \& (2) we get}
+
+\[
+\Phi_{1}(z,0) = 2 - 3z^{2}
+\]
+
+\[
+\Phi_{2}(z,0) = 0
+\]
+
+By Milne's theorem we have
+
+\[
+f'(z) = \Phi_{1}(z,0) - i\Phi_{2}(z,0)
+\]
+
+\[
+= 2 - 3z^{2} - 0
+\]
+
+\[
+\therefore f(z) = \int (2 - 3z^{2})\, dz
+\]
+
+\[
+= 2z - z^{3} + c
+\]
+
+\[
+\Rightarrow u + iv = 2(x+iy) - (x+iy)^{3} + c
+\]
+
+\[
+= 2(x+iy) - (x^{3} + 3ix^{2}y + 3i^{2}xy^{2} + i^{3}y^{3}) + c
+\]
+
+\[
+= 2(x+iy) - x^{3} - 3ix^{2}y + 3xy^{2} - iy^{3} + c
+\]
+
+\[
+= (2x - x^{3} + 3xy^{2}) + i(2y - 3x^{2}y + y^{3} + c_{1})
+\quad ; \text{where } ic_{1} = c
+\]
+
+Equating imaginary parts we have
+
+\[
+v = 2y - 3x^{2}y + y^{3} + c_{1} \quad \text{(Ans).}
+\]
+
+\begin{flushright}
+Md Abde Mannaf
+\end{flushright}
+
+\end{frame}
+
+\begin{frame}{Example 2: Linear Equation(continued )}
+    Previously :
+    \[
+    \frac{d}{dx}\left(\frac{y}{x}\right) = x
+    \] 
+    Integrate both sides:
+    \[
+    \frac{y}{x} = \frac{x^2}{2} + C
+    \]\pause
+    \[
+    \Rightarrow y = \frac{x^3}{2} + Cx
+    \]
+\end{frame}
+\section{Bernoulli Differential equation}
+% -------------------------------
+\begin{frame}{Bernoulli Equation - Definition}
+\frametitle{Bernoulli Equation - Definition}
+
+\begin{tcolorbox}[title=Definition, colback=blue!5!white, colframe=blue!75!black]
+A Bernoulli differential equation is of the form:
+\[
+\frac{dy}{dx} + P(x)y = Q(x)y^n
+\]
+where \( n \neq 0, 1 \).
+\end{tcolorbox}
+
+\pause
+
+To solve it:
+\begin{enumerate}
+    \item Divide both sides by \( y^n \)
+    \item Substitute \( v = y^{1-n} \)
+    \item Reduce to linear form
+    \item Solve using integrating factor
+\end{enumerate}
+
+\end{frame}
+
+% -------------------------------
+\begin{frame}{Example 1}
+\frametitle{Example 1}
+
+\begin{tcolorbox}[title=Example 1, colback=green!5!white, colframe=green!75!black]
+Solve:
+\[
+\frac{dy}{dx} + y = y^2 \sin x
+\]
+\end{tcolorbox}
+
+\pause
+
+Step 1: Identify form:
+\[
+P(x) = 1,\quad Q(x) = \sin x,\quad n = 2
+\]
+
+\pause
+
+Step 2: Divide both sides by \( y^2 \):
+\[
+\frac{1}{y^2} \frac{dy}{dx} + \frac{1}{y} = \sin x
+\]
+
+\pause
+
+Let \( v = \frac{1}{y} \Rightarrow \frac{dv}{dx} = -\frac{1}{y^2} \frac{dy}{dx} \)
+
+\pause
+
+Substitute:
+\[
+-\frac{dv}{dx} + v = \sin x \Rightarrow \frac{dv}{dx} - v = -\sin x
+\]
+
+\pause
+
+Integrating factor: \( \mu(x) = e^{-x} \)
+
+\end{frame}
+\begin{frame}{Example 1(continued )}
+\frametitle{Example 1(continued )}
+Integrating factor: \( \mu(x) = e^{-x} \)
+
+\pause
+
+Multiply through:
+\[
+\frac{d}{dx} (v e^{-x}) = -\sin x e^{-x}
+\]
+
+\pause
+
+Integrate:
+\[
+v e^{-x} = \int -\sin x e^{-x} dx
+\]
+
+\pause
+
+Result:
+\[
+v = \frac{\sin x + \cos x}{2} + C e^x
+\quad \Rightarrow \quad y = \frac{1}{\frac{\sin x + \cos x}{2} + C e^x}
+\]
+
+\end{frame}
+% -------------------------------
+\begin{frame}{Example 2}
+\frametitle{Example 2}
+
+\begin{tcolorbox}[title=Example 2, colback=yellow!5!white, colframe=orange!75!black]
+Solve:
+\[
+\frac{dy}{dx} + \frac{2}{x} y = x^2 y^3
+\]
+\end{tcolorbox}
+
+\pause
+
+Step 1: Identify form:
+\[
+P(x) = \frac{2}{x},\quad Q(x) = x^2,\quad n = 3
+\]
+
+\pause
+
+Step 2: Divide both sides by \( y^3 \):
+\[
+\frac{1}{y^3} \frac{dy}{dx} + \frac{2}{x y^2} = x^2
+\]
+
+\pause
+
+Let \( v = y^{-2} \Rightarrow \frac{dv}{dx} = -2 y^{-3} \frac{dy}{dx} \)
+
+ 
+
+\end{frame}
+\begin{frame}{Example 2(continued )}
+\frametitle{Example 2(continued )}
+    
+Solve for \( \frac{dy}{dx} \):
+\[
+\Rightarrow \frac{1}{y^3} \frac{dy}{dx} = -\frac{1}{2} \frac{dv}{dx}
+\]
+
+\pause
+
+Substitute:
+\[
+-\frac{1}{2} \frac{dv}{dx} + \frac{2}{x} v = x^2
+\Rightarrow \frac{dv}{dx} - \frac{4}{x} v = -2x^2
+\]
+
+\pause
+
+Integrating factor:
+\[
+\mu(x) = e^{\int -\frac{4}{x} dx} = x^{-4}
+\]
+
+\pause
+
+Multiply:
+\[
+x^{-4} \frac{dv}{dx} - \frac{4}{x^5}v = -2x^{-2}
+\Rightarrow \frac{d}{dx}(v x^{-4}) = -2x^{-2}
+\]
+
+\pause
+
+Integrate:
+\[
+v x^{-4} = \int -2x^{-2} dx = 2x^{-1} + C
+\Rightarrow v = x^4 (2x^{-1} + C) = 2x^3 + Cx^4
+\]
+
+\pause
+
+Recall \( v = y^{-2} \Rightarrow y = \frac{1}{\sqrt{2x^3 + Cx^4}} \)
+
+\end{frame}
+% -------------------------------
+\begin{frame}{Example 3 }
+\frametitle{Example 3}
+
+\begin{tcolorbox}[title=Example 3, colback=blue!5!white, colframe=blue!75!black]
+Solve:
+\[
+\frac{dy}{dx} - 3y = -2y^{1/2}
+\]
+\end{tcolorbox}
+
+\pause
+
+Step 1: Identify form:
+\[
+P(x) = -3,\quad Q(x) = -2,\quad n = \frac{1}{2}
+\]
+
+\pause
+
+Step 2: Divide by \( y^{1/2} \):
+\[
+y^{-1/2} \frac{dy}{dx} - 3y^{1/2} = -2
+\]
+
+\pause
+
+Let \( v = y^{1 - 1/2} = y^{1/2} \Rightarrow \frac{dv}{dx} = \frac{1}{2} y^{-1/2} \frac{dy}{dx} \)
+
+\pause
+
+\[
+\Rightarrow y^{-1/2} \frac{dy}{dx} = 2 \frac{dv}{dx}
+\]
+\end{frame}
+\begin{frame}{Example 3(continued )}
+\frametitle{Example 3(continued )}
+ 
+    Substitute:
+\[
+2 \frac{dv}{dx} - 3v = -2
+\Rightarrow \frac{dv}{dx} - \frac{3}{2}v = -1
+\]
+
+\pause
+
+Integrating factor:
+\[
+\mu(x) = e^{-\frac{3}{2}x}
+\]
+
+\pause
+
+Multiply:
+\[
+\frac{d}{dx} \left( v e^{-\frac{3}{2}x} \right) = -e^{-\frac{3}{2}x}
+\]
+
+\pause
+
+Integrate:
+\[
+v e^{-\frac{3}{2}x} = \int -e^{-\frac{3}{2}x} dx = \frac{2}{3} e^{-\frac{3}{2}x} + C
+\Rightarrow v = \frac{2}{3} + C e^{\frac{3}{2}x}
+\]
+
+\pause
+
+Recall \( v = y^{1/2} \Rightarrow y = \left( \frac{2}{3} + C e^{\frac{3}{2}x} \right)^2 \)
+
+\end{frame}
+%---------------------------------------------
+\section{Exact Differential Equations}
+\begin{frame}{Definition of Exact Equations}
+    \begin{block}{General Form}
+        A differential equation of the form
+        \[
+        M(x, y)\,dx + N(x, y)\,dy = 0
+        \]
+        is said to be \textbf{exact} if
+        \[
+        \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}
+        \]
+    \end{block}\pause
+    \begin{block}{Concept}
+        If exact, then there exists a function \( \phi(x, y) \) such that:
+        \[
+        d\phi = M\,dx + N\,dy
+        \]
+        and the solution is given by \( \phi(x, y) = C \).
+    \end{block}
+\end{frame}
+
+\begin{frame}{Example 1: Exact Equation}
+    \textbf{Solve:}
+    \[
+    (2xy + y^2)\,dx + (x^2 + 2xy)\,dy = 0
+    \]\pause
+    Here,
+    \[
+    M = 2xy + y^2, \quad N = x^2 + 2xy
+    \]\pause
+    Compute partial derivatives:
+    \[
+    \frac{\partial M}{\partial y} = 2x + 2y, \quad \frac{\partial N}{\partial x} = 2x + 2y
+    \]\pause
+    Since \( \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \), the equation is \textbf{exact}.
+\end{frame}
+
+\begin{frame}{Solution of Example 1}
+    Integrate \( M \) with respect to \( x \):
+    \[
+    \phi(x, y) = \int M\,dx = \int (2xy + y^2)\,dx = x^2y + xy^2 + h(y)
+    \]\pause
+    Differentiate \( \phi \) with respect to \( y \):
+    \[
+    \frac{\partial \phi}{\partial y} = x^2 + 2xy + h'(y)
+    \]\pause
+    Compare with \( N = x^2 + 2xy \), so \( h'(y) = 0 \Rightarrow h(y) = C \).\pause
+    Hence,
+    \[
+    \phi(x, y) = x^2y + xy^2 = C
+    \]
+    \textbf{This is the required solution.}
+\end{frame}
+
+\begin{frame}{Example 2: Exact Equation}
+    \textbf{Solve:}
+    \[
+    (3x^2y - y^3)\,dx + (x^3 - 3xy^2)\,dy = 0
+    \]\pause
+    Here,
+    \[
+    M = 3x^2y - y^3, \quad N = x^3 - 3xy^2
+    \]\pause
+    \[
+    \frac{\partial M}{\partial y} = 3x^2 - 3y^2, \quad \frac{\partial N}{\partial x} = 3x^2 - 3y^2
+    \]\pause
+    Since these are equal, the equation is exact.\pause
+
+    Integrate \( M \) with respect to \( x \):
+    \[
+    \phi(x, y) = \int (3x^2y - y^3)\,dx = x^3y - xy^3 + h(y)
+    \]\pause
+    Differentiate with respect to \( y \):
+    \[
+    \frac{\partial \phi}{\partial y} = x^3 - 3xy^2 + h'(y)
+    \] 
+\end{frame}
+
+\begin{frame}{Example 2: Exact Equation[continued]}
+  
+    Differentiate with respect to \( y \):
+    \[
+    \frac{\partial \phi}{\partial y} = x^3 - 3xy^2 + h'(y)
+    \]\pause
+    Compare with \( N \): \( h'(y) = 0 \Rightarrow h(y) = 0 \)
+    \[
+    \Rightarrow x^3y - xy^3 = C
+    \]
+\end{frame}
+
+
+
+%---------------------------------------------
+\section{Practice Problems}
+\begin{frame}{Try Yourself}
+    \begin{enumerate}
+        \item Solve: \( \displaystyle \frac{dy}{dx} + 2y = e^{-x} \)
+        \item Test for exactness and solve: \( (2x + y)\,dx + (x + 2y)\,dy = 0 \)
+        \item Solve: \( (y - 2x)\,dx + (x - 2y)\,dy = 0 \)
+    \end{enumerate}
+\end{frame}
+
+%---------------------------------------------
+\section{Summary}
+\begin{frame}{Summary}
+    \begin{itemize}
+        \item Linear differential equations use the integrating factor method.
+        \item Exact equations satisfy \( \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \).
+        \item Both types have structured solution techniques.
+        \item These methods are essential for solving real-world physical, chemical, and engineering problems.
+    \end{itemize}
+\end{frame}
+
+\end{document}
